@@ -1,0 +1,11 @@
+[package]
+name = "audio_image"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.27"
+egui = "0.27"
+egui_extras = "0.27"
+image = "0.25"
+rodio = "0.17"
