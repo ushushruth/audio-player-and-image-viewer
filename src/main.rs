@@ -92,19 +92,25 @@ impl AudioApp {
 impl eframe::App for AudioApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("Audio Player");
-            if ui.button("PLAY").clicked() {
-                self.play();
-            }
-            if ui.button("PAUSE").clicked() {
-                self.pause();
-            }
-            if ui.button("RESUME").clicked() {
-                self.resume();
-            }
-            if ui.button("STOP").clicked() {
-                self.stop();
-            }
+            ui.vertical_centered(|ui| {
+                ui.heading("Audio Player");
+                ui.add_space(20.0);
+
+                ui.horizontal_centered(|ui| {
+                    if ui.button("PLAY").clicked() {
+                        self.play();
+                    }
+                    if ui.button("PAUSE").clicked() {
+                        self.pause();
+                    }
+                    if ui.button("RESUME").clicked() {
+                        self.resume();
+                    }
+                    if ui.button("STOP").clicked() {
+                        self.stop();
+                    }
+                });
+            });
         });
     }
 }
@@ -141,11 +147,13 @@ impl eframe::App for ImageApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui_extras::install_image_loaders(ctx);
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("Image Viewer");
-            if let Some(img) = &self.retained_image {
-                let size = ui.available_size();
-                img.show_max_size(ui, size);
-            }
+            ui.vertical_centered(|ui| {
+                ui.heading("Image Viewer");
+                if let Some(img) = &self.retained_image {
+                    let size = ui.available_size();
+                    img.show_max_size(ui, size);
+                }
+            });
         });
     }
 }
